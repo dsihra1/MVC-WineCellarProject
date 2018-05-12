@@ -1,0 +1,72 @@
+﻿@model IEnumerable<username_Wines.Models.Wine>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div>
+@using (Html.BeginForm())
+{
+    <div class="form-group col-md-4">
+        <label class="control-label col-md-6">Select by Wine Type</label>
+        <div class="col-md-6">
+            @Html.DropDownList("Wine_TypeID", null, "All Wine Types", htmlAttributes: new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="col-md-4">
+        <input type="submit" name="actionButton" value="Filter" class="btn btn-default" />
+        @Html.ActionLink("Clear", "Index")
+    </div>
+}
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.WineType.wtName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.wineName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.wineYear)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.winePrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.wineHarvest)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.WineType.wtName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.wineName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.wineYear)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.winePrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.wineHarvest)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
